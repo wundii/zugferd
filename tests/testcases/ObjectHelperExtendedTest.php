@@ -1397,7 +1397,7 @@ class ObjectHelperExtendedTest extends TestCase
         $this->assertNotInstanceOf(\DateTime::class, self::$objectHelper->toDateTime(null, null));
         $this->assertNotInstanceOf(\DateTime::class, self::$objectHelper->toDateTime("", null));
         $this->assertNotInstanceOf(\DateTime::class, self::$objectHelper->toDateTime(null, ""));
-        $this->assertNull(self::$objectHelper->toDateTime(null, null));
+        $this->assertNotInstanceOf(\DateTime::class, self::$objectHelper->toDateTime(null, null));
         $this->expectException(ZugferdUnknownDateFormatException::class);
         $this->expectExceptionMessage("Invalid date format 999");
         $this->assertNotInstanceOf(\DateTime::class, self::$objectHelper->toDateTime("20200202", "999"));

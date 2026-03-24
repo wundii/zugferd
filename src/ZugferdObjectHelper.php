@@ -1291,7 +1291,7 @@ class ZugferdObjectHelper
         $this->tryCall($supplyChainTradeLineItemType, "setAssociatedDocumentLineDocument", $doclinedoc);
         $this->tryCall($doclinedoc, "setLineStatusCode", $this->getCodeType($lineStatusCode));
         $this->tryCall($doclinedoc, "setLineStatusReasonCode", $this->getCodeType($lineStatusReasonCode));
-        if ($isTextPosition == false) {
+        if ($isTextPosition === false) {
             $this->tryCall($supplyChainTradeLineItemType, "setSpecifiedLineTradeAgreement", $lineTradeAgreementType);
             $this->tryCall($supplyChainTradeLineItemType, "setSpecifiedLineTradeDelivery", $lineTradeDeliveryType);
         }
@@ -1671,7 +1671,7 @@ class ZugferdObjectHelper
         $methods = explode(".", $methods);
 
         foreach ($methods as $index => $method) {
-            if ($index == count($methods) - 1) {
+            if ($index === count($methods) - 1) {
                 $this->tryCall($instance, $method, $value);
             } else {
                 $instance = $this->tryCallAndReturn($instance, $method);

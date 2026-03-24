@@ -907,7 +907,7 @@ class ZugferdKositValidator
             }
         }
 
-        if ($numFilesExists == $zipArchive->numFiles) {
+        if ($numFilesExists === $zipArchive->numFiles) {
             return true;
         }
 

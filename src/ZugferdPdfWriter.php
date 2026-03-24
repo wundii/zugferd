@@ -141,7 +141,7 @@ class ZugferdPdfWriter extends PdfFpdi
 
         if ('' == $mimetype) {
             $mimetype = mime_content_type($file);
-            if ($mimetype === '' || $mimetype === '0' || $mimetype === false) {
+            if (in_array($mimetype, ['', '0', false], true)) {
                 $mimetype = 'application/octet-stream';
             }
         }
@@ -501,6 +501,7 @@ class ZugferdPdfWriter extends PdfFpdi
                         if ('F' === $name) { // Fix 2
                             continue;
                         }
+
                         $this->_put('/'.$name.' ', false);
                         $this->writePdfType($entry);
                     }
@@ -510,6 +511,7 @@ class ZugferdPdfWriter extends PdfFpdi
                         foreach ($pl['quadPoints'] as $value) {
                             $s .= sprintf('%.2F ', $value);
                         }
+
                         $s .= ']';
                         $this->_put($s);
                     }
@@ -517,6 +519,7 @@ class ZugferdPdfWriter extends PdfFpdi
                     $this->_put('/A <</S /URI /URI '.$this->_textstring($pl[4]).'>>');
                     $this->_put('/Border [0 0 0]', false);
                 }
+
                 $this->_put('>>');
             } else {
                 $this->_put('/Border [0 0 0] ', false);
@@ -529,12 +532,14 @@ class ZugferdPdfWriter extends PdfFpdi
                         ? $this->DefPageSize[1] * $this->k
                         : $this->DefPageSize[0] * $this->k;
                 }
+
                 $this->_put(sprintf(
                     '/Dest [%d 0 R /XYZ 0 %.2F null]>>',
                     $this->PageInfo[$l[0]]['n'],
                     $h - $l[1] * $this->k
                 ));
             }
+
             $this->_put('endobj');
         }
     }
