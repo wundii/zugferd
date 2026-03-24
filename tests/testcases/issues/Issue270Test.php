@@ -11,35 +11,35 @@ class Issue270Test extends TestCase
     {
         $document = ZugferdDocumentReader::readAndGuessFromFile(__DIR__ . '/../../assets/issues/xml_issue_268.xml');
 
-        self::assertTrue($document->firstDocumentReceivableSpecifiedTradeAccountingAccount());
+        $this->assertTrue($document->firstDocumentReceivableSpecifiedTradeAccountingAccount());
 
         $document->getDocumentReceivableSpecifiedTradeAccountingAccount($accountId, $accountType);
 
         $this->assertSame("567", $accountId);
         $this->assertSame("", $accountType);
 
-        self::assertFalse($document->nextDocumentReceivableSpecifiedTradeAccountingAccount());
+        $this->assertFalse($document->nextDocumentReceivableSpecifiedTradeAccountingAccount());
     }
 
     public function testDocumentPositionReceivableSpecifiedTradeAccountingAccount(): void
     {
         $document = ZugferdDocumentReader::readAndGuessFromFile(__DIR__ . '/../../assets/issues/xml_issue_268.xml');
 
-        self::assertTrue($document->firstDocumentPosition());
+        $this->assertTrue($document->firstDocumentPosition());
 
         $document->getDocumentPositionReceivableSpecifiedTradeAccountingAccount($accountId, $accountType);
 
         $this->assertSame("567", $accountId);
         $this->assertSame("", $accountType);
 
-        self::assertTrue($document->nextDocumentPosition());
+        $this->assertTrue($document->nextDocumentPosition());
 
         $document->getDocumentPositionReceivableSpecifiedTradeAccountingAccount($accountId, $accountType);
 
         $this->assertSame("567", $accountId);
         $this->assertSame("", $accountType);
 
-        self::assertTrue($document->nextDocumentPosition());
+        $this->assertTrue($document->nextDocumentPosition());
 
         $document->getDocumentPositionReceivableSpecifiedTradeAccountingAccount($accountId, $accountType);
 
@@ -51,42 +51,42 @@ class Issue270Test extends TestCase
     {
         $document = ZugferdDocumentReader::readAndGuessFromFile(__DIR__ . '/../../assets/issues/xml_issue_268_extended.xml');
 
-        self::assertTrue($document->firstDocumentReceivableSpecifiedTradeAccountingAccount());
+        $this->assertTrue($document->firstDocumentReceivableSpecifiedTradeAccountingAccount());
 
         $document->getDocumentReceivableSpecifiedTradeAccountingAccount($accountId, $accountType);
 
         $this->assertSame("567", $accountId);
         $this->assertSame("1", $accountType);
 
-        self::assertTrue($document->nextDocumentReceivableSpecifiedTradeAccountingAccount());
+        $this->assertTrue($document->nextDocumentReceivableSpecifiedTradeAccountingAccount());
 
         $document->getDocumentReceivableSpecifiedTradeAccountingAccount($accountId, $accountType);
 
         $this->assertSame("740", $accountId);
         $this->assertSame("2", $accountType);
 
-        self::assertFalse($document->nextDocumentReceivableSpecifiedTradeAccountingAccount());
+        $this->assertFalse($document->nextDocumentReceivableSpecifiedTradeAccountingAccount());
     }
 
     public function testDocumentPositionReceivableSpecifiedTradeAccountingAccountExtended(): void
     {
         $document = ZugferdDocumentReader::readAndGuessFromFile(__DIR__ . '/../../assets/issues/xml_issue_268_extended.xml');
 
-        self::assertTrue($document->firstDocumentPosition());
+        $this->assertTrue($document->firstDocumentPosition());
 
         $document->getDocumentPositionReceivableSpecifiedTradeAccountingAccount($accountId, $accountType);
 
         $this->assertSame("567", $accountId);
         $this->assertSame("1", $accountType);
 
-        self::assertTrue($document->nextDocumentPosition());
+        $this->assertTrue($document->nextDocumentPosition());
 
         $document->getDocumentPositionReceivableSpecifiedTradeAccountingAccount($accountId, $accountType);
 
         $this->assertSame("567", $accountId);
         $this->assertSame("2", $accountType);
 
-        self::assertTrue($document->nextDocumentPosition());
+        $this->assertTrue($document->nextDocumentPosition());
 
         $document->getDocumentPositionReceivableSpecifiedTradeAccountingAccount($accountId, $accountType);
 

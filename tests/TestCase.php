@@ -73,11 +73,9 @@ class TestCase extends PhpUnitTestCase
 
         $this->expectException(\Exception::class);
 
-        try {
-            call_user_func($run);
-        } finally {
-            restore_error_handler();
-        }
+        call_user_func($run);
+
+        restore_error_handler();
     }
 
     /**

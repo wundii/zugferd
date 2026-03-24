@@ -10,6 +10,7 @@
 namespace horstoeko\zugferd;
 
 use horstoeko\stringmanagement\PathUtils;
+use horstoeko\zugferd\ZugferdSettings;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
 use Symfony\Component\Validator\Validation;
 
@@ -82,10 +83,10 @@ class ZugferdDocumentValidator
     }
 
     /**
-     * Helper to find all files by pattern
+     * Helper for find all files by pattern
      *
      * @param  string  $pattern
-     * @param  int $flags
+     * @param  integer $flags
      * @return array
      */
     private function globRecursive(string $pattern, int $flags = 0): array

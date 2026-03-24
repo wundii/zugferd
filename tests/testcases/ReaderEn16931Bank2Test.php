@@ -46,14 +46,14 @@ class ReaderEn16931Bank2Test extends TestCase
 
     public function testDocumentPaymentMeansLoop(): void
     {
-        self::assertTrue(self::$document->firstGetDocumentPaymentMeans());
-        self::assertFalse(self::$document->nextGetDocumentPaymentMeans());
+        $this->assertTrue(self::$document->firstGetDocumentPaymentMeans());
+        $this->assertFalse(self::$document->nextGetDocumentPaymentMeans());
     }
 
     public function testtDocumentPaymentTermsLoop(): void
     {
-        self::assertTrue(self::$document->firstDocumentPaymentTerms());
-        self::assertFalse(self::$document->nextDocumentPaymentTerms());
+        $this->assertTrue(self::$document->firstDocumentPaymentTerms());
+        $this->assertFalse(self::$document->nextDocumentPaymentTerms());
     }
 
     public function testDocumentGeneralPaymentInformation(): void
@@ -65,7 +65,7 @@ class ReaderEn16931Bank2Test extends TestCase
 
     public function testGetDocumentPaymentMeans(): void
     {
-        self::assertTrue(self::$document->firstGetDocumentPaymentMeans());
+        $this->assertTrue(self::$document->firstGetDocumentPaymentMeans());
         self::$document->getDocumentPaymentMeans($typeCode, $information, $cardType, $cardId, $cardHolderName, $buyerIban, $payeeIban, $payeeAccountName, $payeePropId, $payeeBic);
         $this->assertSame(ZugferdPaymentMeans::UNTDID_4461_30, $typeCode);
         $this->assertSame("", $information);
@@ -81,7 +81,7 @@ class ReaderEn16931Bank2Test extends TestCase
 
     public function testtDocumentPaymentTerms(): void
     {
-        self::assertTrue(self::$document->firstDocumentPaymentTerms());
+        $this->assertTrue(self::$document->firstDocumentPaymentTerms());
         self::$document->getDocumentPaymentTerm($termdescription, $termduedate, $termmandate);
         self::$document->getDiscountTermsFromPaymentTerm($dispercent, $discbasedatetime, $discmeasureval, $discmeasureunit, $discbaseamount, $discamount);
         self::$document->getPenaltyTermsFromPaymentTerm($penaltypercent, $penaltybasedatetime, $penaltymeasureval, $penaltymeasureunit, $penaltybaseamount, $penaltyamount);
@@ -101,7 +101,7 @@ class ReaderEn16931Bank2Test extends TestCase
         $this->assertEquals(0, $penaltybaseamount);
         $this->assertEquals(0, $penaltyamount);
 
-        self::assertFalse(self::$document->nextDocumentPaymentTerms());
+        $this->assertFalse(self::$document->nextDocumentPaymentTerms());
     }
 
     public function testDocumentSellerTaxRepresentativeGeneral(): void
@@ -152,8 +152,8 @@ class ReaderEn16931Bank2Test extends TestCase
 
     public function testDocumentSellerTaxRepresentativeContact(): void
     {
-        self::assertFalse(self::$document->firstDocumentSellerTaxRepresentativeContact());
-        self::assertFalse(self::$document->nextDocumentSellerTaxRepresentativeContact());
+        $this->assertFalse(self::$document->firstDocumentSellerTaxRepresentativeContact());
+        $this->assertFalse(self::$document->nextDocumentSellerTaxRepresentativeContact());
         $this->expectNoticeOrWarningExt(
             function () {
                 self::$document->getDocumentSellerTaxRepresentativeContact($sellertaxreprcontactpersonname, $sellertaxreprcontactdepartmentname, $sellertaxreprcontactphoneno, $sellertaxreprcontactfaxno, $sellertaxreprcontactemailaddr);

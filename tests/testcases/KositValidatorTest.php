@@ -13,6 +13,16 @@ class KositValidatorTest extends TestCase
 {
     use RunsOnlyWithJavaEnvironmentTrait;
 
+    /**
+     * @inheritDoc
+     */
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        //$this->markAsSkippedIfJavaIsNotAvailable();
+    }
+
     public function testMessageBag(): void
     {
         $kositValidator = ZugferdKositValidator::fromString(file_get_contents(__DIR__ . '/../assets/xml_en16931_1.xml'));
@@ -20,33 +30,33 @@ class KositValidatorTest extends TestCase
         $this->assertEmpty($this->getPrivatePropertyFromObject($kositValidator, 'messageBag')->getValue($kositValidator));
         $this->assertEmpty($kositValidator->getProcessOutput());
         $this->assertEmpty($kositValidator->getProcessErrors());
-        self::assertTrue($kositValidator->hasNoProcessErrors());
-        self::assertFalse($kositValidator->hasProcessErrors());
+        $this->assertTrue($kositValidator->hasNoProcessErrors());
+        $this->assertFalse($kositValidator->hasProcessErrors());
         $this->assertEmpty($kositValidator->getValidationErrors());
-        self::assertTrue($kositValidator->hasNoValidationErrors());
-        self::assertFalse($kositValidator->hasValidationErrors());
+        $this->assertTrue($kositValidator->hasNoValidationErrors());
+        $this->assertFalse($kositValidator->hasValidationErrors());
         $this->assertEmpty($kositValidator->getValidationWarnings());
-        self::assertTrue($kositValidator->hasNoValidationWarnings());
-        self::assertFalse($kositValidator->hasValidationWarnings());
+        $this->assertTrue($kositValidator->hasNoValidationWarnings());
+        $this->assertFalse($kositValidator->hasValidationWarnings());
         $this->assertEmpty($kositValidator->getValidationInformation());
-        self::assertTrue($kositValidator->hasNoValidationInformation());
-        self::assertFalse($kositValidator->hasValidationInformation());
+        $this->assertTrue($kositValidator->hasNoValidationInformation());
+        $this->assertFalse($kositValidator->hasValidationInformation());
 
         $this->getPrivateMethodFromObject($kositValidator, 'addToMessageBag')->invokeArgs($kositValidator, ['SomeError']);
 
         $this->assertEmpty($kositValidator->getProcessOutput());
         $this->assertCount(1, $kositValidator->getProcessErrors());
-        self::assertFalse($kositValidator->hasNoProcessErrors());
-        self::assertTrue($kositValidator->hasProcessErrors());
+        $this->assertFalse($kositValidator->hasNoProcessErrors());
+        $this->assertTrue($kositValidator->hasProcessErrors());
         $this->assertEmpty($kositValidator->getValidationErrors());
-        self::assertTrue($kositValidator->hasNoValidationErrors());
-        self::assertFalse($kositValidator->hasValidationErrors());
+        $this->assertTrue($kositValidator->hasNoValidationErrors());
+        $this->assertFalse($kositValidator->hasValidationErrors());
         $this->assertEmpty($kositValidator->getValidationWarnings());
-        self::assertTrue($kositValidator->hasNoValidationWarnings());
-        self::assertFalse($kositValidator->hasValidationWarnings());
+        $this->assertTrue($kositValidator->hasNoValidationWarnings());
+        $this->assertFalse($kositValidator->hasValidationWarnings());
         $this->assertEmpty($kositValidator->getValidationInformation());
-        self::assertTrue($kositValidator->hasNoValidationInformation());
-        self::assertFalse($kositValidator->hasValidationInformation());
+        $this->assertTrue($kositValidator->hasNoValidationInformation());
+        $this->assertFalse($kositValidator->hasValidationInformation());
         $this->assertArrayHasKey(0, $kositValidator->getProcessErrors());
         $this->assertSame('SomeError', $kositValidator->getProcessErrors()[0] ?? "");
 
@@ -54,51 +64,51 @@ class KositValidatorTest extends TestCase
 
         $this->assertEmpty($kositValidator->getProcessOutput());
         $this->assertCount(1, $kositValidator->getProcessErrors());
-        self::assertFalse($kositValidator->hasNoProcessErrors());
-        self::assertTrue($kositValidator->hasProcessErrors());
+        $this->assertFalse($kositValidator->hasNoProcessErrors());
+        $this->assertTrue($kositValidator->hasProcessErrors());
         $this->assertCount(1, $kositValidator->getValidationErrors());
-        self::assertFalse($kositValidator->hasNoValidationErrors());
-        self::assertTrue($kositValidator->hasValidationErrors());
+        $this->assertFalse($kositValidator->hasNoValidationErrors());
+        $this->assertTrue($kositValidator->hasValidationErrors());
         $this->assertEmpty($kositValidator->getValidationWarnings());
-        self::assertTrue($kositValidator->hasNoValidationWarnings());
-        self::assertFalse($kositValidator->hasValidationWarnings());
+        $this->assertTrue($kositValidator->hasNoValidationWarnings());
+        $this->assertFalse($kositValidator->hasValidationWarnings());
         $this->assertEmpty($kositValidator->getValidationInformation());
-        self::assertTrue($kositValidator->hasNoValidationInformation());
-        self::assertFalse($kositValidator->hasValidationInformation());
+        $this->assertTrue($kositValidator->hasNoValidationInformation());
+        $this->assertFalse($kositValidator->hasValidationInformation());
         $this->assertSame('SomeError', $kositValidator->getProcessErrors()[0]);
 
         $this->getPrivateMethodFromObject($kositValidator, 'addToMessageBag')->invokeArgs($kositValidator, ['SomeError', 'validationwarning']);
 
         $this->assertEmpty($kositValidator->getProcessOutput());
         $this->assertCount(1, $kositValidator->getProcessErrors());
-        self::assertFalse($kositValidator->hasNoProcessErrors());
-        self::assertTrue($kositValidator->hasProcessErrors());
+        $this->assertFalse($kositValidator->hasNoProcessErrors());
+        $this->assertTrue($kositValidator->hasProcessErrors());
         $this->assertCount(1, $kositValidator->getValidationErrors());
-        self::assertFalse($kositValidator->hasNoValidationErrors());
-        self::assertTrue($kositValidator->hasValidationErrors());
+        $this->assertFalse($kositValidator->hasNoValidationErrors());
+        $this->assertTrue($kositValidator->hasValidationErrors());
         $this->assertCount(1, $kositValidator->getValidationWarnings());
-        self::assertFalse($kositValidator->hasNoValidationWarnings());
-        self::assertTrue($kositValidator->hasValidationWarnings());
+        $this->assertFalse($kositValidator->hasNoValidationWarnings());
+        $this->assertTrue($kositValidator->hasValidationWarnings());
         $this->assertEmpty($kositValidator->getValidationInformation());
-        self::assertTrue($kositValidator->hasNoValidationInformation());
-        self::assertFalse($kositValidator->hasValidationInformation());
+        $this->assertTrue($kositValidator->hasNoValidationInformation());
+        $this->assertFalse($kositValidator->hasValidationInformation());
         $this->assertSame('SomeError', $kositValidator->getProcessErrors()[0]);
 
         $this->getPrivateMethodFromObject($kositValidator, 'addToMessageBag')->invokeArgs($kositValidator, ['SomeError', 'validationinformation']);
 
         $this->assertEmpty($kositValidator->getProcessOutput());
         $this->assertCount(1, $kositValidator->getProcessErrors());
-        self::assertFalse($kositValidator->hasNoProcessErrors());
-        self::assertTrue($kositValidator->hasProcessErrors());
+        $this->assertFalse($kositValidator->hasNoProcessErrors());
+        $this->assertTrue($kositValidator->hasProcessErrors());
         $this->assertCount(1, $kositValidator->getValidationErrors());
-        self::assertFalse($kositValidator->hasNoValidationErrors());
-        self::assertTrue($kositValidator->hasValidationErrors());
+        $this->assertFalse($kositValidator->hasNoValidationErrors());
+        $this->assertTrue($kositValidator->hasValidationErrors());
         $this->assertCount(1, $kositValidator->getValidationWarnings());
-        self::assertFalse($kositValidator->hasNoValidationWarnings());
-        self::assertTrue($kositValidator->hasValidationWarnings());
+        $this->assertFalse($kositValidator->hasNoValidationWarnings());
+        $this->assertTrue($kositValidator->hasValidationWarnings());
         $this->assertCount(1, $kositValidator->getValidationInformation());
-        self::assertFalse($kositValidator->hasNoValidationInformation());
-        self::assertTrue($kositValidator->hasValidationInformation());
+        $this->assertFalse($kositValidator->hasNoValidationInformation());
+        $this->assertTrue($kositValidator->hasValidationInformation());
         $this->assertSame('SomeError', $kositValidator->getProcessErrors()[0]);
 
         $this->assertClearMessageBag($kositValidator);
@@ -277,7 +287,7 @@ class KositValidatorTest extends TestCase
 
         $kositValidator->disableCleanup();
 
-        self::assertTrue($this->getPrivatePropertyFromObject($kositValidator, 'cleanupBaseDirectoryIsDisabled')->getValue($kositValidator));
+        $this->assertTrue($this->getPrivatePropertyFromObject($kositValidator, 'cleanupBaseDirectoryIsDisabled')->getValue($kositValidator));
     }
 
     public function testEnableCleanup(): void
@@ -288,7 +298,7 @@ class KositValidatorTest extends TestCase
 
         $kositValidator->enableCleanup();
 
-        self::assertFalse($this->getPrivatePropertyFromObject($kositValidator, 'cleanupBaseDirectoryIsDisabled')->getValue($kositValidator));
+        $this->assertFalse($this->getPrivatePropertyFromObject($kositValidator, 'cleanupBaseDirectoryIsDisabled')->getValue($kositValidator));
     }
 
     public function testDisableRemoteMode(): void
@@ -299,7 +309,7 @@ class KositValidatorTest extends TestCase
 
         $kositValidator->disableRemoteMode();
 
-        self::assertFalse($this->getPrivatePropertyFromObject($kositValidator, 'remoteModeEnabled')->getValue($kositValidator));
+        $this->assertFalse($this->getPrivatePropertyFromObject($kositValidator, 'remoteModeEnabled')->getValue($kositValidator));
     }
 
     public function testEnableRemoteMode(): void
@@ -310,7 +320,7 @@ class KositValidatorTest extends TestCase
 
         $kositValidator->enableRemoteMode();
 
-        self::assertTrue($this->getPrivatePropertyFromObject($kositValidator, 'remoteModeEnabled')->getValue($kositValidator));
+        $this->assertTrue($this->getPrivatePropertyFromObject($kositValidator, 'remoteModeEnabled')->getValue($kositValidator));
     }
 
     public function testSetRemoteModeHostWhichIsValid(): void
@@ -380,7 +390,7 @@ class KositValidatorTest extends TestCase
 
         $this->assertInitialValues($kositValidator);
 
-        self::assertFalse($this->getPrivateMethodFromObject($kositValidator, 'checkRequirements')->invokeArgs($kositValidator, []), 'A document is missing');
+        $this->assertFalse($this->getPrivateMethodFromObject($kositValidator, 'checkRequirements')->invokeArgs($kositValidator, []), 'A document is missing');
         $this->assertCount(1, $kositValidator->getProcessErrors());
         $this->assertSame("You must specify an instance of the ZugferdDocument class", $kositValidator->getProcessErrors()[0]);
     }
@@ -392,10 +402,10 @@ class KositValidatorTest extends TestCase
         $this->assertInitialValues($kositValidator);
 
         if ($this->isJavaAvailable()) {
-            self::assertTrue($this->getPrivateMethodFromObject($kositValidator, 'checkRequirements')->invokeArgs($kositValidator, []));
+            $this->assertTrue($this->getPrivateMethodFromObject($kositValidator, 'checkRequirements')->invokeArgs($kositValidator, []));
             $this->assertEmpty($kositValidator->getProcessErrors());
         } else {
-            self::assertFalse($this->getPrivateMethodFromObject($kositValidator, 'checkRequirements')->invokeArgs($kositValidator, []));
+            $this->assertFalse($this->getPrivateMethodFromObject($kositValidator, 'checkRequirements')->invokeArgs($kositValidator, []));
             $this->assertCount(1, $kositValidator->getProcessErrors());
             $this->assertSame("JAVA not installed on this machine", $kositValidator->getProcessErrors()[0]);
         }
@@ -411,7 +421,7 @@ class KositValidatorTest extends TestCase
         $kositValidator->setRemoteModeHost("127.0.0.1");
         $kositValidator->setRemoteModePort(8080);
 
-        self::assertFalse($this->getPrivateMethodFromObject($kositValidator, 'checkRequirements')->invokeArgs($kositValidator, []), 'A document is missing');
+        $this->assertFalse($this->getPrivateMethodFromObject($kositValidator, 'checkRequirements')->invokeArgs($kositValidator, []), 'A document is missing');
         $this->assertCount(1, $kositValidator->getProcessErrors());
         $this->assertSame("You must specify an instance of the ZugferdDocument class", $kositValidator->getProcessErrors()[0]);
         $this->assertClearMessageBag($kositValidator);
@@ -425,7 +435,7 @@ class KositValidatorTest extends TestCase
 
         $kositValidator->enableRemoteMode();
 
-        self::assertFalse($this->getPrivateMethodFromObject($kositValidator, 'checkRequirements')->invokeArgs($kositValidator, []));
+        $this->assertFalse($this->getPrivateMethodFromObject($kositValidator, 'checkRequirements')->invokeArgs($kositValidator, []));
         $this->assertCount(1, $kositValidator->getProcessErrors());
         $this->assertSame("You must specify the hostname or it's IP where the Validator is running in daemon mode", $kositValidator->getProcessErrors()[0]);
         $this->assertClearMessageBag($kositValidator);
@@ -440,7 +450,7 @@ class KositValidatorTest extends TestCase
         $kositValidator->enableRemoteMode();
         $kositValidator->setRemoteModeHost("127.0.0.1");
 
-        self::assertFalse($this->getPrivateMethodFromObject($kositValidator, 'checkRequirements')->invokeArgs($kositValidator, []));
+        $this->assertFalse($this->getPrivateMethodFromObject($kositValidator, 'checkRequirements')->invokeArgs($kositValidator, []));
         $this->assertCount(1, $kositValidator->getProcessErrors());
         $this->assertSame("You must specify the port of the host where the Validator is running in daemon mode", $kositValidator->getProcessErrors()[0]);
         $this->assertClearMessageBag($kositValidator);
@@ -456,7 +466,7 @@ class KositValidatorTest extends TestCase
         $kositValidator->setRemoteModeHost("127.0.0.1");
         $kositValidator->setRemoteModePort(8080);
 
-        self::assertFalse($this->getPrivateMethodFromObject($kositValidator, 'checkRequirements')->invokeArgs($kositValidator, []));
+        $this->assertFalse($this->getPrivateMethodFromObject($kositValidator, 'checkRequirements')->invokeArgs($kositValidator, []));
         $this->assertCount(2, $kositValidator->getProcessErrors());
         $this->assertSame("Failed to connect to the host where the Validator is running in daemon mode", $kositValidator->getProcessErrors()[0]);
         $this->assertClearMessageBag($kositValidator);
@@ -474,7 +484,7 @@ class KositValidatorTest extends TestCase
         $this->registerFileForTeardown($filenameAppZip);
         $this->registerFileForTeardown($filenameScenarioZip);
 
-        self::assertTrue($this->getPrivateMethodFromObject($kositValidator, 'downloadRequiredFiles')->invokeArgs($kositValidator, []));
+        $this->assertTrue($this->getPrivateMethodFromObject($kositValidator, 'downloadRequiredFiles')->invokeArgs($kositValidator, []));
         $this->assertFileExists($filenameAppZip);
         $this->assertFileExists($filenameScenarioZip);
         $this->assertEmpty($kositValidator->getProcessErrors());
@@ -499,7 +509,7 @@ class KositValidatorTest extends TestCase
         $this->registerFileForTeardown($filenameAppZip);
         $this->registerFileForTeardown($filenameScenarioZip);
 
-        self::assertTrue($this->getPrivateMethodFromObject($kositValidator, 'downloadRequiredFiles')->invokeArgs($kositValidator, []));
+        $this->assertTrue($this->getPrivateMethodFromObject($kositValidator, 'downloadRequiredFiles')->invokeArgs($kositValidator, []));
         $this->assertFileDoesNotExist($filenameAppZip);
         $this->assertFileDoesNotExist($filenameScenarioZip);
         $this->assertEmpty($kositValidator->getProcessErrors());
@@ -522,7 +532,7 @@ class KositValidatorTest extends TestCase
         $this->registerFileForTeardown($filenameAppZip);
         $this->registerFileForTeardown($filenameScenarioZip);
 
-        self::assertFalse($this->getPrivateMethodFromObject($kositValidator, 'downloadRequiredFiles')->invokeArgs($kositValidator, []));
+        $this->assertFalse($this->getPrivateMethodFromObject($kositValidator, 'downloadRequiredFiles')->invokeArgs($kositValidator, []));
         $this->assertFileDoesNotExist($filenameAppZip);
         $this->assertFileDoesNotExist($filenameScenarioZip);
         $this->assertCount(2, $kositValidator->getProcessErrors());
@@ -548,7 +558,7 @@ class KositValidatorTest extends TestCase
         $this->registerFileForTeardown($filenameAppZip);
         $this->registerFileForTeardown($filenameScenarioZip);
 
-        self::assertFalse($this->getPrivateMethodFromObject($kositValidator, 'downloadRequiredFiles')->invokeArgs($kositValidator, []));
+        $this->assertFalse($this->getPrivateMethodFromObject($kositValidator, 'downloadRequiredFiles')->invokeArgs($kositValidator, []));
         $this->assertFileExists($filenameAppZip);
         $this->assertFileDoesNotExist($filenameScenarioZip);
         $this->assertCount(2, $kositValidator->getProcessErrors());
@@ -574,13 +584,13 @@ class KositValidatorTest extends TestCase
         $this->registerFileForTeardown($filenameAppZip);
         $this->registerFileForTeardown($filenameScenarioZip);
 
-        self::assertTrue($this->getPrivateMethodFromObject($kositValidator, 'downloadRequiredFiles')->invokeArgs($kositValidator, []));
+        $this->assertTrue($this->getPrivateMethodFromObject($kositValidator, 'downloadRequiredFiles')->invokeArgs($kositValidator, []));
         $this->assertFileExists($filenameAppZip);
         $this->assertFileExists($filenameScenarioZip);
         $this->assertEmpty($kositValidator->getProcessErrors());
         $this->assertClearMessageBag($kositValidator);
 
-        self::assertTrue($this->getPrivateMethodFromObject($kositValidator, 'unpackRequiredFiles')->invokeArgs($kositValidator, []));
+        $this->assertTrue($this->getPrivateMethodFromObject($kositValidator, 'unpackRequiredFiles')->invokeArgs($kositValidator, []));
         $this->assertFileExists(PathUtils::combinePathWithFile($baseDirectory, "scenarios.xml"));
         $this->assertFileExists(PathUtils::combinePathWithFile($baseDirectory, "validationtool-1.5.0.jar"));
         $this->assertFileExists(PathUtils::combinePathWithFile($baseDirectory, "validationtool-1.5.0-java8-standalone.jar"));
@@ -609,13 +619,13 @@ class KositValidatorTest extends TestCase
         $this->registerFileForTeardown($filenameAppZip);
         $this->registerFileForTeardown($filenameScenarioZip);
 
-        self::assertTrue($this->getPrivateMethodFromObject($kositValidator, 'downloadRequiredFiles')->invokeArgs($kositValidator, []));
+        $this->assertTrue($this->getPrivateMethodFromObject($kositValidator, 'downloadRequiredFiles')->invokeArgs($kositValidator, []));
         $this->assertFileDoesNotExist($filenameAppZip);
         $this->assertFileDoesNotExist($filenameScenarioZip);
         $this->assertEmpty($kositValidator->getProcessErrors());
         $this->assertClearMessageBag($kositValidator);
 
-        self::assertTrue($this->getPrivateMethodFromObject($kositValidator, 'unpackRequiredFiles')->invokeArgs($kositValidator, []));
+        $this->assertTrue($this->getPrivateMethodFromObject($kositValidator, 'unpackRequiredFiles')->invokeArgs($kositValidator, []));
         $this->assertFileDoesNotExist(PathUtils::combinePathWithFile($baseDirectory, "scenarios.xml"));
         $this->assertFileDoesNotExist(PathUtils::combinePathWithFile($baseDirectory, "validationtool-1.5.0.jar"));
         $this->assertFileDoesNotExist(PathUtils::combinePathWithFile($baseDirectory, "validationtool-1.5.0-java8-standalone.jar"));
@@ -635,25 +645,25 @@ class KositValidatorTest extends TestCase
         $kositValidator->validate();
 
         if ($this->isJavaAvailable()) {
-            self::assertTrue($kositValidator->hasNoProcessErrors());
-            self::assertFalse($kositValidator->hasProcessErrors());
-            self::assertTrue($kositValidator->hasNoValidationErrors());
-            self::assertFalse($kositValidator->hasValidationErrors());
-            self::assertTrue($kositValidator->hasNoValidationWarnings());
-            self::assertFalse($kositValidator->hasValidationWarnings());
-            self::assertTrue($kositValidator->hasNoValidationInformation());
-            self::assertFalse($kositValidator->hasValidationInformation());
+            $this->assertTrue($kositValidator->hasNoProcessErrors());
+            $this->assertFalse($kositValidator->hasProcessErrors());
+            $this->assertTrue($kositValidator->hasNoValidationErrors());
+            $this->assertFalse($kositValidator->hasValidationErrors());
+            $this->assertTrue($kositValidator->hasNoValidationWarnings());
+            $this->assertFalse($kositValidator->hasValidationWarnings());
+            $this->assertTrue($kositValidator->hasNoValidationInformation());
+            $this->assertFalse($kositValidator->hasValidationInformation());
             $this->assertEmpty($kositValidator->getProcessErrors());
             $this->assertNotEmpty($kositValidator->getProcessOutput());
         } else {
-            self::assertFalse($kositValidator->hasNoProcessErrors());
-            self::assertTrue($kositValidator->hasProcessErrors());
-            self::assertTrue($kositValidator->hasNoValidationErrors());
-            self::assertFalse($kositValidator->hasValidationErrors());
-            self::assertTrue($kositValidator->hasNoValidationWarnings());
-            self::assertFalse($kositValidator->hasValidationWarnings());
-            self::assertTrue($kositValidator->hasNoValidationInformation());
-            self::assertFalse($kositValidator->hasValidationInformation());
+            $this->assertFalse($kositValidator->hasNoProcessErrors());
+            $this->assertTrue($kositValidator->hasProcessErrors());
+            $this->assertTrue($kositValidator->hasNoValidationErrors());
+            $this->assertFalse($kositValidator->hasValidationErrors());
+            $this->assertTrue($kositValidator->hasNoValidationWarnings());
+            $this->assertFalse($kositValidator->hasValidationWarnings());
+            $this->assertTrue($kositValidator->hasNoValidationInformation());
+            $this->assertFalse($kositValidator->hasValidationInformation());
             $this->assertCount(1, $kositValidator->getProcessErrors());
             $this->assertStringContainsString("JAVA not installed on this machine", $kositValidator->getProcessErrors()[0]);
             $this->assertEmpty($kositValidator->getProcessOutput());
@@ -669,27 +679,27 @@ class KositValidatorTest extends TestCase
         $kositValidator->validate();
 
         if ($this->isJavaAvailable()) {
-            self::assertTrue($kositValidator->hasNoProcessErrors());
-            self::assertFalse($kositValidator->hasProcessErrors());
-            self::assertFalse($kositValidator->hasNoValidationErrors());
-            self::assertTrue($kositValidator->hasValidationErrors());
-            self::assertTrue($kositValidator->hasNoValidationWarnings());
-            self::assertFalse($kositValidator->hasValidationWarnings());
-            self::assertTrue($kositValidator->hasNoValidationInformation());
-            self::assertFalse($kositValidator->hasValidationInformation());
+            $this->assertTrue($kositValidator->hasNoProcessErrors());
+            $this->assertFalse($kositValidator->hasProcessErrors());
+            $this->assertFalse($kositValidator->hasNoValidationErrors());
+            $this->assertTrue($kositValidator->hasValidationErrors());
+            $this->assertTrue($kositValidator->hasNoValidationWarnings());
+            $this->assertFalse($kositValidator->hasValidationWarnings());
+            $this->assertTrue($kositValidator->hasNoValidationInformation());
+            $this->assertFalse($kositValidator->hasValidationInformation());
             $this->assertEmpty($kositValidator->getProcessErrors());
             $this->assertNotEmpty($kositValidator->getProcessOutput());
             $this->assertCount(1, $kositValidator->getValidationErrors());
             $this->assertContains("Validation error. One ore more files were rejected", $kositValidator->getValidationErrors());
         } else {
-            self::assertFalse($kositValidator->hasNoProcessErrors());
-            self::assertTrue($kositValidator->hasProcessErrors());
-            self::assertTrue($kositValidator->hasNoValidationErrors());
-            self::assertFalse($kositValidator->hasValidationErrors());
-            self::assertTrue($kositValidator->hasNoValidationWarnings());
-            self::assertFalse($kositValidator->hasValidationWarnings());
-            self::assertTrue($kositValidator->hasNoValidationInformation());
-            self::assertFalse($kositValidator->hasValidationInformation());
+            $this->assertFalse($kositValidator->hasNoProcessErrors());
+            $this->assertTrue($kositValidator->hasProcessErrors());
+            $this->assertTrue($kositValidator->hasNoValidationErrors());
+            $this->assertFalse($kositValidator->hasValidationErrors());
+            $this->assertTrue($kositValidator->hasNoValidationWarnings());
+            $this->assertFalse($kositValidator->hasValidationWarnings());
+            $this->assertTrue($kositValidator->hasNoValidationInformation());
+            $this->assertFalse($kositValidator->hasValidationInformation());
             $this->assertCount(1, $kositValidator->getProcessErrors());
             $this->assertEmpty($kositValidator->getProcessOutput());
             $this->assertEmpty($kositValidator->getValidationErrors());
@@ -716,8 +726,8 @@ class KositValidatorTest extends TestCase
         $this->assertSame("validationtool-1.5.0-standalone.jar", $this->getPrivatePropertyFromObject($kositValidator, 'validatorAppJarFilename')->getValue($kositValidator));
         $this->assertSame("scenarios.xml", $this->getPrivatePropertyFromObject($kositValidator, 'validatorAppScenarioFilename')->getValue($kositValidator));
         $this->assertSame("", $this->getPrivatePropertyFromObject($kositValidator, 'fileToValidateFilename')->getValue($kositValidator));
-        self::assertFalse($this->getPrivatePropertyFromObject($kositValidator, 'cleanupBaseDirectoryIsDisabled')->getValue($kositValidator));
-        self::assertFalse($this->getPrivatePropertyFromObject($kositValidator, 'remoteModeEnabled')->getValue($kositValidator));
+        $this->assertFalse($this->getPrivatePropertyFromObject($kositValidator, 'cleanupBaseDirectoryIsDisabled')->getValue($kositValidator));
+        $this->assertFalse($this->getPrivatePropertyFromObject($kositValidator, 'remoteModeEnabled')->getValue($kositValidator));
         $this->assertSame("", $this->getPrivatePropertyFromObject($kositValidator, 'remoteModeHost')->getValue($kositValidator));
         $this->assertSame(0, $this->getPrivatePropertyFromObject($kositValidator, 'remoteModePort')->getValue($kositValidator));
 

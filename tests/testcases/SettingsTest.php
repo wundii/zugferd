@@ -193,16 +193,16 @@ class SettingsTest extends TestCase
     public function testSerializerCacheDirectory(): void
     {
         $this->assertSame('', ZugferdSettings::getSerializerCacheDirectory());
-        self::assertFalse(ZugferdSettings::hasSerializerCacheDirectory());
+        $this->assertFalse(ZugferdSettings::hasSerializerCacheDirectory());
 
         ZugferdSettings::setSerializerCacheDirectory(sys_get_temp_dir());
 
         $this->assertSame(sys_get_temp_dir(), ZugferdSettings::getSerializerCacheDirectory());
-        self::assertTrue(ZugferdSettings::hasSerializerCacheDirectory());
+        $this->assertTrue(ZugferdSettings::hasSerializerCacheDirectory());
 
         ZugferdSettings::setSerializerCacheDirectory('');
 
         $this->assertSame('', ZugferdSettings::getSerializerCacheDirectory());
-        self::assertFalse(ZugferdSettings::hasSerializerCacheDirectory());
+        $this->assertFalse(ZugferdSettings::hasSerializerCacheDirectory());
     }
 }

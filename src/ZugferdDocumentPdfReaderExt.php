@@ -22,7 +22,7 @@ use Smalot\PdfParser\Parser as PdfParser;
 /**
  * Class representing the extended document reader for incoming PDF/A-Documents with
  * attached XML data in BASIC-, EN16931- and EXTENDED profile. The Extended PDF reader
- * also reads additional attached documents from PDF
+ * reads also additinal attached documents from PDF
  *
  * @category Zugferd
  * @package  Zugferd
@@ -43,7 +43,7 @@ class ZugferdDocumentPdfReaderExt
     ];
 
     /**
-     * Identifier for an XML-Invoice-Document
+     * Identifier for a XML-Invoice-Docuemnt
      */
     private const ATTACHMENT_TYPE_XMLINVOICE = 0;
 
@@ -68,7 +68,7 @@ class ZugferdDocumentPdfReaderExt
     public const ATTACHMENT_KEY_FILENAME = 'filename';
 
     /**
-     * Key of the mimetype element in the internal attachment list
+     * Key of the filename element in the internal attachment list
      */
     public const ATTACHMENT_KEY_MIMETYPE = 'mimetype';
 
@@ -123,7 +123,7 @@ class ZugferdDocumentPdfReaderExt
     }
 
     /**
-     * Load a PDF file and return a ZugferdDocumentReader instance
+     * Load a PDF file and return a ZugferDocumentReader-Instance
      *
      * @param  string $pdfFilename Contains a full-qualified filename which must exist and must be readable
      * @throws Exception
@@ -143,7 +143,7 @@ class ZugferdDocumentPdfReaderExt
     }
 
     /**
-     * Load a PDF content and return a ZugferdDocumentReader instance
+     * Load a PDF content and return a ZugferDocumentReader-Instance
      *
      * @param  string $pdfContent Contains the raw data of a PDF
      * @throws Exception
@@ -161,8 +161,8 @@ class ZugferdDocumentPdfReaderExt
     }
 
     /**
-     * Returns an invoice document XML content from a PDF file
-     * similar to ZugferdDocumentPdfReader::getXmlFromFile
+     * Returns a invoice document XML content from a PDF file
+     * similar to ZugferdDocumentPdfReader::getXmlFromContent
      *
      * @param  string $pdfFilename Contains a full-qualified filename which must exist and must be readable
      * @return string
@@ -178,7 +178,7 @@ class ZugferdDocumentPdfReaderExt
     }
 
     /**
-     * Returns an invoice document XML content from a PDF content string
+     * Returns a invoice document XML content from a PDF content string
      *
      * @param  string $pdfContent Contains the raw data of a PDF
      * @return string

@@ -41,7 +41,7 @@ class JsonExporterTest extends TestCase
         $jsonObject = $exporter->toJsonObject();
 
         $this->assertInstanceOf("stdClass", $jsonObject);
-        self::assertTrue(isset($jsonObject->ExchangedDocumentContext));
-        self::assertTrue(isset($jsonObject->ExchangedDocumentContext->GuidelineSpecifiedDocumentContextParameter));
+        $this->assertTrue(isset($jsonObject->ExchangedDocumentContext));
+        $this->assertTrue(isset($jsonObject->ExchangedDocumentContext->GuidelineSpecifiedDocumentContextParameter));
     }
 }

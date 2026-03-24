@@ -66,7 +66,7 @@ class ReaderXRechnungAttachedBinaryObjectTest extends TestCase
 
     public function testFirstDocumentAdditionalReferencedDocument(): void
     {
-        self::assertTrue((self::$document)->firstDocumentAdditionalReferencedDocument());
+        $this->assertTrue((self::$document)->firstDocumentAdditionalReferencedDocument());
     }
 
     public function testGetDocumentAdditionalReferencedDocumentNoDirectorySet(): void
@@ -100,6 +100,6 @@ class ReaderXRechnungAttachedBinaryObjectTest extends TestCase
 
     public function testNextDocumentAdditionalReferencedDocument(): void
     {
-        self::assertFalse((self::$document)->nextDocumentAdditionalReferencedDocument());
+        $this->assertFalse((self::$document)->nextDocumentAdditionalReferencedDocument());
     }
 }

@@ -6,7 +6,7 @@ use horstoeko\zugferd\ZugferdKositValidator;
 /**
  * Enable/Disable example remote validation against the KOSiT-Validator.
  *
- * @return bool
+ * @return boolean
  */
 function validationEnabled(): bool
 {
@@ -26,7 +26,7 @@ function getKositValidatorRemoteHost(): string
 /**
  * Get the remote port of the machine where the KOSiT validator is running in daemon mode.
  *
- * @return int
+ * @return integer
  */
 function getKositValidatorRemotePort(): int
 {

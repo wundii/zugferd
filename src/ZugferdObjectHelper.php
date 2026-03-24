@@ -17,6 +17,7 @@ use horstoeko\stringmanagement\FileUtils;
 use horstoeko\stringmanagement\StringUtils;
 use horstoeko\zugferd\exception\ZugferdUnknownDateFormatException;
 use horstoeko\zugferd\exception\ZugferdUnsupportedMimetype;
+use horstoeko\zugferd\ZugferdProfileResolver;
 
 /**
  * Class representing a collection of common helpers and class factories
@@ -32,7 +33,7 @@ class ZugferdObjectHelper
     /**
      * Internal profile id
      *
-     * @var int
+     * @var integer
      */
     public $profile = -1;
 
@@ -44,7 +45,7 @@ class ZugferdObjectHelper
     public $profiledef = [];
 
     /**
-     * A list of supported mimetypes by binary attachments
+     * A list of supported mimetypes by binaryattachments
      */
     public const SUPPORTEDTMIMETYPES = [
         "application/pdf",
@@ -59,7 +60,7 @@ class ZugferdObjectHelper
     /**
      * Constructor
      *
-     * @param int $profile
+     * @param integer $profile
      */
     public function __construct(int $profile)
     {
@@ -293,7 +294,7 @@ class ZugferdObjectHelper
     }
 
     /**
-     * Representation of Percent
+     * Representation of Percdnt
      *
      * @param  float|null $value
      * @return object|null
@@ -859,7 +860,7 @@ class ZugferdObjectHelper
     }
 
     /**
-     * Creates an instance of SupplyChainEventType with the given occurrence date
+     * Undocumented function
      *
      * @param  DateTimeInterface|null $date
      * @return object|null
@@ -947,7 +948,7 @@ class ZugferdObjectHelper
     }
 
     /**
-     * Creates an instance of CreditorFinancialInstitutionType with the given BIC
+     * Undocumented function
      *
      * @param  string|null $bic
      * @return object|null
@@ -1112,7 +1113,7 @@ class ZugferdObjectHelper
      * Zu- und Abschläge
      *
      * @param  float|null   $actualAmount
-     * @param  bool|null $isCharge
+     * @param  boolean|null $isCharge
      * @param  string|null  $taxTypeCode
      * @param  string|null  $taxCategoryCode
      * @param  float|null   $rateApplicablePercent
@@ -1150,7 +1151,7 @@ class ZugferdObjectHelper
     }
 
     /**
-     * Get instance of LogisticsServiceChargeType
+     * Get instance of
      *
      * @param  string|null $description
      * @param  float|null  $appliedAmount
@@ -1271,7 +1272,7 @@ class ZugferdObjectHelper
      * @param  string|null $lineId
      * @param  string|null $lineStatusCode
      * @param  string|null $lineStatusReasonCode
-     * @param  bool     $isTextPosition
+     * @param  boolean     $isTextPosition
      * @return object|null
      */
     public function getSupplyChainTradeLineItemType(?string $lineId = null, ?string $lineStatusCode = null, ?string $lineStatusReasonCode = null, bool $isTextPosition = false): ?object
@@ -1290,7 +1291,7 @@ class ZugferdObjectHelper
         $this->tryCall($supplyChainTradeLineItemType, "setAssociatedDocumentLineDocument", $doclinedoc);
         $this->tryCall($doclinedoc, "setLineStatusCode", $this->getCodeType($lineStatusCode));
         $this->tryCall($doclinedoc, "setLineStatusReasonCode", $this->getCodeType($lineStatusReasonCode));
-        if (!$isTextPosition) {
+        if ($isTextPosition == false) {
             $this->tryCall($supplyChainTradeLineItemType, "setSpecifiedLineTradeAgreement", $lineTradeAgreementType);
             $this->tryCall($supplyChainTradeLineItemType, "setSpecifiedLineTradeDelivery", $lineTradeDeliveryType);
         }
@@ -1472,7 +1473,7 @@ class ZugferdObjectHelper
     }
 
     /**
-     * Creates an instance of TradeCurrencyExchangeType for tax applicable currency exchange
+     * Undocumented function
      *
      * @param  string|null            $sourceCurrencyCode
      * @param  string|null            $targetCurrencyCode
@@ -1511,31 +1512,31 @@ class ZugferdObjectHelper
 
         $dateTimeString = trim($dateTimeString);
 
-        if ($format === "102") {
+        if ($format == "102") {
             return DateTime::createFromFormat("Ymd", $dateTimeString);
         }
 
-        if ($format === "101") {
+        if ($format == "101") {
             return DateTime::createFromFormat("ymd", $dateTimeString);
         }
 
-        if ($format === "201") {
+        if ($format == "201") {
             return DateTime::createFromFormat("ymdHi", $dateTimeString);
         }
 
-        if ($format === "202") {
+        if ($format == "202") {
             return DateTime::createFromFormat("ymdHis", $dateTimeString);
         }
 
-        if ($format === "203") {
+        if ($format == "203") {
             return DateTime::createFromFormat("YmdHi", $dateTimeString);
         }
 
-        if ($format === "204") {
+        if ($format == "204") {
             return DateTime::createFromFormat("YmdHis", $dateTimeString);
         }
 
-        if ($format === "610") {
+        if ($format == "610") {
             return DateTime::createFromFormat("Ym", $dateTimeString)->modify('first day of')->modify('midnight');
         }
 
@@ -1633,7 +1634,7 @@ class ZugferdObjectHelper
     }
 
     /**
-     * Tries to call a method and return the return value from call to $method
+     * Tries to call a method and return the returnvalue from call to $method
      * in object $instance
      *
      * @param  object $instance
@@ -1699,7 +1700,7 @@ class ZugferdObjectHelper
     }
 
     /**
-     * Call $method if it exists, otherwise $method2 is called with $value
+     * Call $method if exists, otherwise $method2 is calles with $value
      *
      * @param  object $instance
      * @param  string $methodToLookFor
@@ -1773,7 +1774,7 @@ class ZugferdObjectHelper
      * Test if a value is null or empty
      *
      * @param  mixed $value
-     * @return bool
+     * @return boolean
      */
     public static function isNullOrEmpty($value)
     {
@@ -1788,15 +1789,16 @@ class ZugferdObjectHelper
      * Checks if all function arguments are null or empty
      *
      * @param  array $args
-     * @return bool
+     * @return boolean
      */
     public static function isAllNullOrEmpty(array $args): bool
     {
         foreach ($args as $arg) {
-            if (
-                $arg instanceof DateTimeInterface
-                || !self::isNullOrEmpty($arg)
-            ) {
+            if ($arg instanceof DateTime) {
+                return false;
+            }
+
+            if (!self::isNullOrEmpty($arg)) {
                 return false;
             }
         }
@@ -1805,16 +1807,18 @@ class ZugferdObjectHelper
     }
 
     /**
-     * Checks if one of the function arguments is null or empty
+     * Checks if all function arguments are null or empty
      *
      * @param  array $args
-     * @return bool
+     * @return boolean
      */
     public static function isOneNullOrEmpty(array $args): bool
     {
         foreach ($args as $arg) {
-            if ($arg instanceof DateTimeInterface) {
-                continue;
+            if ($arg instanceof DateTime) {
+                if ($arg == null) {
+                    return true;
+                }
             } elseif (self::isNullOrEmpty($arg)) {
                 return true;
             }
@@ -1828,14 +1832,15 @@ class ZugferdObjectHelper
      *
      * @param  string|object $instance
      * @param  string        $method
-     * @return bool
+     * @return boolean
      */
     public function methodExists($instance, $method): bool
     {
-        if (
-            $instance == null
-            || (!is_object($instance) && !is_string($instance))
-        ) {
+        if ($instance == null) {
+            return false;
+        }
+
+        if (!is_object($instance) && !is_string($instance)) {
             return false;
         }
 

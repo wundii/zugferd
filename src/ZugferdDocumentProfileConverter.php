@@ -163,7 +163,7 @@ class ZugferdDocumentProfileConverter extends ZugferdDocument
     }
 
     /**
-     * Create an instance by content
+     * Create an instance by cpntent
      *
      * @param  string $fromContent
      * @param  int    $newProfileId
@@ -252,7 +252,7 @@ class ZugferdDocumentProfileConverter extends ZugferdDocument
     {
         $this->initProfile($this->convertToProfileId);
         $this->initObjectHelper();
-        $this->initSerializer();
+        $this->initSerialzer();
         $this->deserialize($this->convertFromContent);
         $this->updateProfileInInvoiceObject();
 

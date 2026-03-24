@@ -10,14 +10,14 @@ trait RunsOnlyWithJavaEnvironmentTrait
     /**
      * Status of JAVA checks
      *
-     * @var null|bool
+     * @var null|boolean
      */
     private $javaAvailable;
 
     /**
      * Checking availability of Java
      *
-     * @return bool
+     * @return boolean
      */
     private function isJavaAvailable(): bool
     {

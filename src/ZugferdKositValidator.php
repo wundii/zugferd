@@ -21,7 +21,7 @@ use Symfony\Component\Process\Process;
 
 /**
  * Class representing the validator against Schematron (Kosit) for documents.
- * This class requires a running JAVA setup
+ * This class requires a JAVA running setup
  *
  * @category Zugferd
  * @package  Zugferd
@@ -102,16 +102,16 @@ class ZugferdKositValidator
     private $fileToValidateFilename = "";
 
     /**
-     * Internal flag which indicates that the cleanup of the base directory is disabled
+     * Internal flag which indicates that the cleanup of the base directory is disables
      *
-     * @var bool
+     * @var boolean
      */
     private $cleanupBaseDirectoryIsDisabled = false;
 
     /**
      * Use remote validation (JAVA application is running in daemon mode on a remote host)
      *
-     * @var bool
+     * @var boolean
      */
     private $remoteModeEnabled = false;
 
@@ -125,7 +125,7 @@ class ZugferdKositValidator
     /**
      * The remote host port
      *
-     * @var int
+     * @var integer
      */
     private $remoteModePort = 0;
 
@@ -372,7 +372,7 @@ class ZugferdKositValidator
      * Set the port of the remote host where the validation application
      * is running in daemon mode
      *
-     * @param  int $remoteModePort
+     * @param  integer $remoteModePort
      * @return ZugferdKositValidator
      */
     public function setRemoteModePort(int $remoteModePort): ZugferdKositValidator
@@ -473,7 +473,7 @@ class ZugferdKositValidator
      *
      * @return string
      */
-    private function resolveScenarioZipFilename(): string
+    private function resolveScenatioZipFilename(): string
     {
         return PathUtils::combinePathWithFile($this->resolveBaseDirectory(), $this->validatorScenarioZipFilename);
     }
@@ -550,7 +550,7 @@ class ZugferdKositValidator
     }
 
     /**
-     * Get messages from message bag filtered by message type
+     * Get messages from messagebag filtered by message type
      *
      * @param  string $messageType
      * @return array
@@ -583,7 +583,7 @@ class ZugferdKositValidator
     /**
      * Returns true if __no__ validation errors are present otherwise false
      *
-     * @return bool
+     * @return boolean
      */
     public function hasNoValidationErrors(): bool
     {
@@ -593,7 +593,7 @@ class ZugferdKositValidator
     /**
      * Returns true if validation errors are present otherwise false
      *
-     * @return bool
+     * @return boolean
      */
     public function hasValidationErrors(): bool
     {
@@ -613,7 +613,7 @@ class ZugferdKositValidator
     /**
      * Returns true if __no__ validation warnings are present otherwise false
      *
-     * @return bool
+     * @return boolean
      */
     public function hasNoValidationWarnings(): bool
     {
@@ -623,7 +623,7 @@ class ZugferdKositValidator
     /**
      * Returns true if validation warnings are present otherwise false
      *
-     * @return bool
+     * @return boolean
      */
     public function hasValidationWarnings(): bool
     {
@@ -641,9 +641,9 @@ class ZugferdKositValidator
     }
 
     /**
-     * Returns true if __no__ validation information is present, otherwise false
+     * Returns true if __no__ validation information are present otherwise false
      *
-     * @return bool
+     * @return boolean
      */
     public function hasNoValidationInformation(): bool
     {
@@ -651,9 +651,9 @@ class ZugferdKositValidator
     }
 
     /**
-     * Returns true if validation information is present, otherwise false
+     * Returns true if validation Information are present otherwise false
      *
-     * @return bool
+     * @return boolean
      */
     public function hasValidationInformation(): bool
     {
@@ -673,7 +673,7 @@ class ZugferdKositValidator
     /**
      * Returns true if there are __no__ system errors (e.g. exceptions before the validation app was called)
      *
-     * @return bool
+     * @return boolean
      */
     public function hasNoProcessErrors(): bool
     {
@@ -683,7 +683,7 @@ class ZugferdKositValidator
     /**
      * Returns true if there are any system errors (e.g. exceptions before the validation app was called)
      *
-     * @return bool
+     * @return boolean
      */
     public function hasProcessErrors(): bool
     {
@@ -703,7 +703,7 @@ class ZugferdKositValidator
     /**
      * Check Requirements
      *
-     * @return bool
+     * @return boolean
      */
     private function checkRequirements(): bool
     {
@@ -719,9 +719,9 @@ class ZugferdKositValidator
     }
 
     /**
-     * Check general requirements (common for local and remote validation)
+     * CHeck general requirements (common for local and remote validation)
      *
-     * @return bool
+     * @return boolean
      */
     private function checkRequirementsGeneral(): bool
     {
@@ -734,9 +734,9 @@ class ZugferdKositValidator
     }
 
     /**
-     * Check requirements for usage on a local installation
+     * CHeck requirements for usage on a local installation
      *
-     * @return bool
+     * @return boolean
      */
     private function checkRequirementsLocal(): bool
     {
@@ -760,10 +760,10 @@ class ZugferdKositValidator
     }
 
     /**
-     * Check requirements for usage on a remote host which is running the application
+     * CHeck requirements for usage on a remote host which is running the application
      * in daemon mode
      *
-     * @return bool
+     * @return boolean
      */
     private function checkRequirementsRemote(): bool
     {
@@ -777,7 +777,7 @@ class ZugferdKositValidator
         }
 
         if (StringUtils::stringIsNullOrEmpty($this->remoteModeHost)) {
-            $this->addToMessageBag("You must specify the hostname or its IP where the Validator is running in daemon mode");
+            $this->addToMessageBag("You must specify the hostname or it's IP where the Validator is running in daemon mode");
             return false;
         }
 
@@ -785,9 +785,6 @@ class ZugferdKositValidator
             $this->addToMessageBag("You must specify the port of the host where the Validator is running in daemon mode");
             return false;
         }
-
-        $httpConnection = null;
-        $bRw = true;
 
         try {
             $httpConnection = curl_init($this->getRemoteModeUrl());
@@ -805,34 +802,35 @@ class ZugferdKositValidator
             if ($response === false) {
                 $this->addToMessageBag("Failed to connect to the host where the Validator is running in daemon mode");
                 $this->addToMessageBag(curl_error($httpConnection));
-                curl_close($httpConnection);
                 return false;
             }
 
             $responseStatusCode = curl_getinfo($httpConnection, CURLINFO_HTTP_CODE);
+            $responseError = curl_error($httpConnection);
+
+            if (PHP_VERSION_ID >= 80000) {
+                unset($httpConnection);
+            } else {
+                curl_close($httpConnection);
+            }
 
             if (($responseStatusCode < 200) || ($responseStatusCode >= 400)) {
                 $this->addToMessageBag("Failed to connect to the host where the Validator is running in daemon mode");
-                $this->addToMessageBag(curl_error($httpConnection));
-                curl_close($httpConnection);
+                $this->addToMessageBag($responseError);
                 return false;
             }
         } catch (Throwable $throwable) {
             $this->addToMessageBag($throwable);
-            $bRw = false;
-        } finally {
-            if ($httpConnection !== null) {
-                curl_close($httpConnection);
-            }
+            return false;
         }
 
-        return $bRw;
+        return true;
     }
 
     /**
      * Download required files
      *
-     * @return bool
+     * @return boolean
      */
     private function downloadRequiredFiles(): bool
     {
@@ -845,7 +843,7 @@ class ZugferdKositValidator
             return false;
         }
 
-        if (!$this->runFileDownload($this->validatorScenarioDownloadUrl, $this->resolveScenarioZipFilename())) {
+        if (!$this->runFileDownload($this->validatorScenarioDownloadUrl, $this->resolveScenatioZipFilename())) {
             $this->addToMessageBag(sprintf("Unable to download from %s containing the validation scenarios", $this->validatorScenarioDownloadUrl));
             return false;
         }
@@ -856,7 +854,7 @@ class ZugferdKositValidator
     /**
      * Unpack required files
      *
-     * @return bool
+     * @return boolean
      */
     private function unpackRequiredFiles(): bool
     {
@@ -865,7 +863,7 @@ class ZugferdKositValidator
         }
 
         $validatorAppFile = $this->resolveAppZipFilename();
-        $validatorScenarioFile = $this->resolveScenarioZipFilename();
+        $validatorScenarioFile = $this->resolveScenatioZipFilename();
 
         if (!$this->unpackRequiredFile($validatorAppFile)) {
             $this->addToMessageBag(sprintf("Unable to unpack archive %s containing the JAVA-Application", $validatorAppFile));
@@ -884,7 +882,7 @@ class ZugferdKositValidator
      * Unpack single required file
      *
      * @param  string $filename
-     * @return bool
+     * @return boolean
      */
     private function unpackRequiredFile(string $filename): bool
     {
@@ -927,7 +925,7 @@ class ZugferdKositValidator
     /**
      * Runs the validator java application
      *
-     * @return bool
+     * @return boolean
      */
     private function performValidation(): bool
     {
@@ -941,7 +939,7 @@ class ZugferdKositValidator
     /**
      * Runs the validator java application locally
      *
-     * @return bool
+     * @return boolean
      */
     private function performValidationLocal(): bool
     {
@@ -978,16 +976,13 @@ class ZugferdKositValidator
     /**
      * Runs the validator java application on the remote host
      *
-     * @return bool
+     * @return boolean
      */
     private function performValidationRemote(): bool
     {
         if ($this->remoteModeEnabled !== true) {
             return true;
         }
-
-        $httpConnection = null;
-        $bRw = true;
 
         try {
             $httpConnection = curl_init($this->getRemoteModeUrl());
@@ -1008,35 +1003,35 @@ class ZugferdKositValidator
             if ($response === false) {
                 $this->addToMessageBag("Failed to connect to the host where the Validator is running in daemon mode");
                 $this->addToMessageBag(curl_error($httpConnection));
-                curl_close($httpConnection);
                 return false;
             }
 
             $responseStatusCode = curl_getinfo($httpConnection, CURLINFO_HTTP_CODE);
+
+            if (PHP_VERSION_ID >= 80000) {
+                unset($httpConnection);
+            } else {
+                curl_close($httpConnection);
+            }
 
             if (($responseStatusCode < 200) || ($responseStatusCode >= 400)) {
                 if (preg_match('/<\?xml.*?\?>.*<\/.+>/s', $response, $matches)) {
                     $this->parseValidatorXmlReportByContent($matches[0]);
                 }
 
-                curl_close($httpConnection);
                 return false;
             }
         } catch (Throwable $throwable) {
             $this->addToMessageBag($throwable);
-            $bRw = false;
-        } finally {
-            if ($httpConnection !== null) {
-                curl_close($httpConnection);
-            }
+            return false;
         }
 
-        return $bRw;
+        return true;
     }
 
     /**
-     * Parses the XML report from the validation app (JAVA application) and puts errors
-     * to message bag
+     * Parses the XML report from the validation app (JAVA application) and put errors
+     * to messagebag
      *
      * @return void
      */
@@ -1059,8 +1054,8 @@ class ZugferdKositValidator
     }
 
     /**
-     * Parses the XML content string containing the response from the validation app (JAVA application) and puts errors
-     * to message bag
+     * Parses the XML content string containing the response from the validation app (JAVA application) and put errors
+     * to messagebag
      *
      * @param  string $xmlContent
      * @return void
@@ -1078,8 +1073,8 @@ class ZugferdKositValidator
     }
 
     /**
-     * Parses the XML DOMDocument containing the response from the validation app (JAVA application) and puts errors
-     * to message bag
+     * Parses the XML DOMDocument containing the response from the validation app (JAVA application) and put errors
+     * to messagebag
      *
      * @param  DOMDocument $domDocument
      * @return void
@@ -1119,11 +1114,15 @@ class ZugferdKositValidator
      */
     private function cleanupBaseDirectory(): void
     {
-        if (
-            $this->remoteModeEnabled === true
-            || $this->cleanupBaseDirectoryIsDisabled === true
-            || !is_dir($this->resolveBaseDirectory())
-        ) {
+        if ($this->remoteModeEnabled === true) {
+            return;
+        }
+
+        if ($this->cleanupBaseDirectoryIsDisabled === true) {
+            return;
+        }
+
+        if (!is_dir($this->resolveBaseDirectory())) {
             return;
         }
 
@@ -1163,12 +1162,12 @@ class ZugferdKositValidator
     }
 
     /**
-     * Runs a process. If the process ran successfully this method
+     * Runs a process. If the process runned successfully this method
      * returns true, otherwise false
      *
      * @param  array  $command
      * @param  string $workingdirectory
-     * @return bool
+     * @return boolean
      */
     private function runValidationApplication(array $command, string $workingdirectory): bool
     {
@@ -1192,7 +1191,7 @@ class ZugferdKositValidator
                 }
 
                 if ($process->getExitCode() > 0) {
-                    $this->addToMessageBag("Validation error. One or more files were rejected", static::MSG_TYPE_VALIDATIONERROR);
+                    $this->addToMessageBag("Validation error. One ore more files were rejected", static::MSG_TYPE_VALIDATIONERROR);
                 }
 
                 return false;
@@ -1210,8 +1209,8 @@ class ZugferdKositValidator
      *
      * @param  string  $url
      * @param  string  $toFilePath
-     * @param  bool $forceOverwrite
-     * @return bool
+     * @param  boolean $forceOverwrite
+     * @return boolean
      */
     private function runFileDownload(string $url, string $toFilePath, bool $forceOverwrite = false): bool
     {

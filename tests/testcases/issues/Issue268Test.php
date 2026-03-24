@@ -11,14 +11,14 @@ class Issue268Test extends TestCase
     {
         $document = ZugferdDocumentReader::readAndGuessFromFile(__DIR__ . '/../../assets/issues/xml_issue_268.xml');
 
-        self::assertFalse($document->firstDocumentPositionAdditionalReferencedDocument());
+        $this->assertFalse($document->firstDocumentPositionAdditionalReferencedDocument());
     }
 
     public function testBT128(): void
     {
         $document = ZugferdDocumentReader::readAndGuessFromFile(__DIR__ . '/../../assets/issues/xml_issue_268.xml');
 
-        self::assertTrue($document->firstDocumentPositionAdditionalReferencedObjDocument());
+        $this->assertTrue($document->firstDocumentPositionAdditionalReferencedObjDocument());
 
         $document->getDocumentPositionAdditionalReferencedObjDocument($issuerAssignedId, $typeCode, $refTypeCode);
 
@@ -26,14 +26,14 @@ class Issue268Test extends TestCase
         $this->assertSame("130", $typeCode);
         $this->assertSame("ABZ", $refTypeCode);
 
-        self::assertFalse($document->nextDocumentPositionAdditionalReferencedObjDocument());
+        $this->assertFalse($document->nextDocumentPositionAdditionalReferencedObjDocument());
     }
 
     public function testBTX331(): void
     {
         $document = ZugferdDocumentReader::readAndGuessFromFile(__DIR__ . '/../../assets/issues/xml_issue_268.xml');
 
-        self::assertTrue($document->firstDocumentPositionAdditionalReferencedObjDocument());
+        $this->assertTrue($document->firstDocumentPositionAdditionalReferencedObjDocument());
 
         $document->getDocumentPositionInvoiceReferencedDocument($issuerAssignedId, $lineid, $typeCode, $issueDate);
 
@@ -47,7 +47,7 @@ class Issue268Test extends TestCase
     {
         $document = ZugferdDocumentReader::readAndGuessFromFile(__DIR__ . '/../../assets/issues/xml_issue_268_extended.xml');
 
-        self::assertTrue($document->firstDocumentPositionAdditionalReferencedDocument());
+        $this->assertTrue($document->firstDocumentPositionAdditionalReferencedDocument());
 
         $document->getDocumentPositionAdditionalReferencedDocument($issuerAssignedId, $typeCode, $uriId, $lineId, $name, $refTypeCode, $issueDate, $binaryDataFilename);
 
@@ -55,14 +55,14 @@ class Issue268Test extends TestCase
         $this->assertSame("130", $typeCode);
         $this->assertSame("ABZ", $refTypeCode);
 
-        self::assertFalse($document->nextDocumentPositionAdditionalReferencedDocument());
+        $this->assertFalse($document->nextDocumentPositionAdditionalReferencedDocument());
     }
 
     public function testBT128Extended(): void
     {
         $document = ZugferdDocumentReader::readAndGuessFromFile(__DIR__ . '/../../assets/issues/xml_issue_268_extended.xml');
 
-        self::assertTrue($document->firstDocumentPositionAdditionalReferencedObjDocument());
+        $this->assertTrue($document->firstDocumentPositionAdditionalReferencedObjDocument());
 
         $document->getDocumentPositionAdditionalReferencedObjDocument($issuerAssignedId, $typeCode, $refTypeCode);
 
@@ -70,7 +70,7 @@ class Issue268Test extends TestCase
         $this->assertSame("130", $typeCode);
         $this->assertSame("ABZ", $refTypeCode);
 
-        self::assertTrue($document->nextDocumentPositionAdditionalReferencedObjDocument());
+        $this->assertTrue($document->nextDocumentPositionAdditionalReferencedObjDocument());
 
         $document->getDocumentPositionAdditionalReferencedObjDocument($issuerAssignedId, $typeCode, $refTypeCode);
 
@@ -78,14 +78,14 @@ class Issue268Test extends TestCase
         $this->assertSame("130 (2)", $typeCode);
         $this->assertSame("ABZ (2)", $refTypeCode);
 
-        self::assertFalse($document->nextDocumentPositionAdditionalReferencedObjDocument());
+        $this->assertFalse($document->nextDocumentPositionAdditionalReferencedObjDocument());
     }
 
     public function testBTX331Extended(): void
     {
         $document = ZugferdDocumentReader::readAndGuessFromFile(__DIR__ . '/../../assets/issues/xml_issue_268_extended.xml');
 
-        self::assertTrue($document->firstDocumentPositionAdditionalReferencedObjDocument());
+        $this->assertTrue($document->firstDocumentPositionAdditionalReferencedObjDocument());
 
         $document->getDocumentPositionInvoiceReferencedDocument($issuerAssignedId, $lineid, $typeCode, $issueDate);
 

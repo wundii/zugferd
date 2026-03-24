@@ -81,13 +81,13 @@ class PdfReaderExtended2Test extends TestCase
     public function testDocumentIsCopy(): void
     {
         self::$document->getIsDocumentCopy($iscopy);
-        self::assertFalse($iscopy);
+        $this->assertFalse($iscopy);
     }
 
     public function testDocumentIsTestDocument(): void
     {
         self::$document->getIsTestDocument($istest);
-        self::assertFalse($istest);
+        $this->assertFalse($istest);
     }
 
     public function testDocumentSummation(): void
@@ -163,8 +163,8 @@ class PdfReaderExtended2Test extends TestCase
 
     public function testDocumentSellerContact(): void
     {
-        self::assertFalse(self::$document->firstDocumentSellerContact());
-        self::assertFalse(self::$document->nextDocumentSellerContact());
+        $this->assertFalse(self::$document->firstDocumentSellerContact());
+        $this->assertFalse(self::$document->nextDocumentSellerContact());
         $this->expectNoticeOrWarningExt(
             function () {
                 self::$document->getDocumentSellerContact($sellercontactpersonname, $sellercontactdepartmentname, $sellercontactphoneno, $sellercontactfaxno, $sellercontactemailaddr);
@@ -232,8 +232,8 @@ class PdfReaderExtended2Test extends TestCase
 
     public function testDocumentBuyerContact(): void
     {
-        self::assertFalse(self::$document->firstDocumentBuyerContact());
-        self::assertFalse(self::$document->nextDocumentBuyerContact());
+        $this->assertFalse(self::$document->firstDocumentBuyerContact());
+        $this->assertFalse(self::$document->nextDocumentBuyerContact());
         $this->expectNoticeOrWarningExt(
             function () {
                 self::$document->getDocumentBuyerContact($buyercontactpersonname, $buyercontactdepartmentname, $buyercontactphoneno, $buyercontactfaxno, $buyercontactemailaddr);
@@ -294,8 +294,8 @@ class PdfReaderExtended2Test extends TestCase
 
     public function testDocumentSellerTaxRepresentativeContact(): void
     {
-        self::assertFalse(self::$document->firstDocumentSellerTaxRepresentativeContact());
-        self::assertFalse(self::$document->nextDocumentSellerTaxRepresentativeContact());
+        $this->assertFalse(self::$document->firstDocumentSellerTaxRepresentativeContact());
+        $this->assertFalse(self::$document->nextDocumentSellerTaxRepresentativeContact());
         $this->expectNoticeOrWarningExt(
             function () {
                 self::$document->getDocumentSellerTaxRepresentativeContact($sellertaxreprcontactpersonname, $sellertaxreprcontactdepartmentname, $sellertaxreprcontactphoneno, $sellertaxreprcontactfaxno, $sellertaxreprcontactemailaddr);
@@ -350,8 +350,8 @@ class PdfReaderExtended2Test extends TestCase
 
     public function testDocumentShipToContact(): void
     {
-        self::assertFalse(self::$document->firstDocumentShipToContact());
-        self::assertFalse(self::$document->nextDocumentShipToContact());
+        $this->assertFalse(self::$document->firstDocumentShipToContact());
+        $this->assertFalse(self::$document->nextDocumentShipToContact());
         $this->expectNoticeOrWarningExt(
             function () {
                 self::$document->getDocumentShipToContact($shiptocontactpersonname, $shiptocontactdepartmentname, $shiptocontactphoneno, $shiptocontactfaxno, $shiptocontactemailaddr);
@@ -405,13 +405,13 @@ class PdfReaderExtended2Test extends TestCase
 
     public function testDocumentUltimateShipToContact(): void
     {
-        self::assertFalse(self::$document->firstDocumentUltimateShipToContact());
+        $this->assertFalse(self::$document->firstDocumentUltimateShipToContact());
         $this->expectNoticeOrWarningExt(
             function () {
                 self::$document->getDocumentUltimateShipToContact($ultimateshiptocontactpersonname, $ultimateshiptocontactdepartmentname, $ultimateshiptocontactphoneno, $ultimateshiptocontactfaxno, $ultimateshiptocontactemailaddr);
             }
         );
-        self::assertFalse(self::$document->nextDocumentUltimateShipToContact());
+        $this->assertFalse(self::$document->nextDocumentUltimateShipToContact());
         $this->expectNoticeOrWarningExt(
             function () {
                 self::$document->getDocumentUltimateShipToContact($ultimateshiptocontactpersonname, $ultimateshiptocontactdepartmentname, $ultimateshiptocontactphoneno, $ultimateshiptocontactfaxno, $ultimateshiptocontactemailaddr);
@@ -465,13 +465,13 @@ class PdfReaderExtended2Test extends TestCase
 
     public function testDocumentShipFromContact(): void
     {
-        self::assertFalse(self::$document->firstDocumentShipFromContact());
+        $this->assertFalse(self::$document->firstDocumentShipFromContact());
         $this->expectNoticeOrWarningExt(
             function () {
                 self::$document->getDocumentShipFromContact($shipfromcontactpersonname, $shipfromcontactdepartmentname, $shipfromcontactphoneno, $shipfromcontactfaxno, $shipfromcontactemailaddr);
             }
         );
-        self::assertFalse(self::$document->nextDocumentShipFromContact());
+        $this->assertFalse(self::$document->nextDocumentShipFromContact());
         $this->expectNoticeOrWarningExt(
             function () {
                 self::$document->getDocumentShipFromContact($shipfromcontactpersonname, $shipfromcontactdepartmentname, $shipfromcontactphoneno, $shipfromcontactfaxno, $shipfromcontactemailaddr);
@@ -525,13 +525,13 @@ class PdfReaderExtended2Test extends TestCase
 
     public function testDocumentInvoicerContact(): void
     {
-        self::assertFalse(self::$document->firstDocumentInvoicerContact());
+        $this->assertFalse(self::$document->firstDocumentInvoicerContact());
         $this->expectNoticeOrWarningExt(
             function () {
                 self::$document->getDocumentInvoicerContact($invoicercontactpersonname, $invoicercontactdepartmentname, $invoicercontactphoneno, $invoicercontactfaxno, $invoicercontactemailaddr);
             }
         );
-        self::assertFalse(self::$document->nextDocumentInvoicerContact());
+        $this->assertFalse(self::$document->nextDocumentInvoicerContact());
         $this->expectNoticeOrWarningExt(
             function () {
                 self::$document->getDocumentInvoicerContact($invoicercontactpersonname, $invoicercontactdepartmentname, $invoicercontactphoneno, $invoicercontactfaxno, $invoicercontactemailaddr);
@@ -585,13 +585,13 @@ class PdfReaderExtended2Test extends TestCase
 
     public function testDocumentInvoiceeContact(): void
     {
-        self::assertFalse(self::$document->firstDocumentInvoiceeContact());
+        $this->assertFalse(self::$document->firstDocumentInvoiceeContact());
         $this->expectNoticeOrWarningExt(
             function () {
                 self::$document->getDocumentInvoiceeContact($invoiceecontactpersonname, $invoiceecontactdepartmentname, $invoiceecontactphoneno, $invoiceecontactfaxno, $invoiceecontactemailaddr);
             }
         );
-        self::assertFalse(self::$document->nextDocumentInvoiceeContact());
+        $this->assertFalse(self::$document->nextDocumentInvoiceeContact());
         $this->expectNoticeOrWarningExt(
             function () {
                 self::$document->getDocumentInvoiceeContact($invoiceecontactpersonname, $invoiceecontactdepartmentname, $invoiceecontactphoneno, $invoiceecontactfaxno, $invoiceecontactemailaddr);
@@ -645,13 +645,13 @@ class PdfReaderExtended2Test extends TestCase
 
     public function testDocumentPayeeContact(): void
     {
-        self::assertFalse(self::$document->firstDocumentPayeeContact());
+        $this->assertFalse(self::$document->firstDocumentPayeeContact());
         $this->expectNoticeOrWarningExt(
             function () {
                 self::$document->getDocumentPayeeContact($payeecontactpersonname, $payeecontactdepartmentname, $payeecontactphoneno, $payeecontactfaxno, $payeecontactemailaddr);
             }
         );
-        self::assertFalse(self::$document->nextDocumentPayeeContact());
+        $this->assertFalse(self::$document->nextDocumentPayeeContact());
         $this->expectNoticeOrWarningExt(
             function () {
                 self::$document->getDocumentPayeeContact($payeecontactpersonname, $payeecontactdepartmentname, $payeecontactphoneno, $payeecontactfaxno, $payeecontactemailaddr);
@@ -710,13 +710,13 @@ class PdfReaderExtended2Test extends TestCase
 
     public function testDocumentProductEndUserContact(): void
     {
-        self::assertFalse(self::$document->firstDocumentProductEndUserContactContact());
+        $this->assertFalse(self::$document->firstDocumentProductEndUserContactContact());
         $this->expectNoticeOrWarningExt(
             function () {
                 self::$document->getDocumentProductEndUserContact($producendusercontactpersonname, $producendusercontactdepartmentname, $producendusercontactphoneno, $producendusercontactfaxno, $producendusercontactemailaddr);
             }
         );
-        self::assertFalse(self::$document->nextDocumentProductEndUserContactContact());
+        $this->assertFalse(self::$document->nextDocumentProductEndUserContactContact());
     }
 
     public function testDocumentSellerOrderReferencedDocument(): void
@@ -771,6 +771,7 @@ class PdfReaderExtended2Test extends TestCase
     {
         self::$document->getDocumentSupplyChainEvent($supplychainevent);
         $this->assertInstanceOf(\DateTime::class, $supplychainevent);
+        $this->assertInstanceOf("DateTime", $supplychainevent);
         $this->assertEquals((\DateTime::createFromFormat('Ymd', '20200115'))->format('Ymd'), $supplychainevent->format('Ymd'));
     }
 
@@ -838,15 +839,15 @@ class PdfReaderExtended2Test extends TestCase
 
     public function testDocumentAdditionalReferencedDocumentLoop(): void
     {
-        self::assertTrue(self::$document->firstDocumentAdditionalReferencedDocument());
-        self::assertTrue(self::$document->nextDocumentAdditionalReferencedDocument());
-        self::assertTrue(self::$document->nextDocumentAdditionalReferencedDocument());
-        self::assertFalse(self::$document->nextDocumentAdditionalReferencedDocument());
+        $this->assertTrue(self::$document->firstDocumentAdditionalReferencedDocument());
+        $this->assertTrue(self::$document->nextDocumentAdditionalReferencedDocument());
+        $this->assertTrue(self::$document->nextDocumentAdditionalReferencedDocument());
+        $this->assertFalse(self::$document->nextDocumentAdditionalReferencedDocument());
     }
 
     public function testGetDocumentAdditionalReferencedDocument(): void
     {
-        self::assertTrue(self::$document->firstDocumentAdditionalReferencedDocument());
+        $this->assertTrue(self::$document->firstDocumentAdditionalReferencedDocument());
         self::$document->getDocumentAdditionalReferencedDocument($issuerassignedid, $typecode, $uriid, $name, $reftypecode, $issueddate, $binarydatafilename);
         $this->assertSame("SUPPort doc", $issuerassignedid);
         $this->assertSame("916", $typecode);
@@ -862,19 +863,19 @@ class PdfReaderExtended2Test extends TestCase
 
     public function testDocumentUltimateCustomerOrderReferencedDocumentLoop(): void
     {
-        self::assertFalse(self::$document->firstDocumentUltimateCustomerOrderReferencedDocument());
-        self::assertFalse(self::$document->nextDocumentUltimateCustomerOrderReferencedDocument());
+        $this->assertFalse(self::$document->firstDocumentUltimateCustomerOrderReferencedDocument());
+        $this->assertFalse(self::$document->nextDocumentUltimateCustomerOrderReferencedDocument());
     }
 
     public function testDocumentPaymentMeansLoop(): void
     {
-        self::assertTrue(self::$document->firstGetDocumentPaymentMeans());
-        self::assertFalse(self::$document->nextGetDocumentPaymentMeans());
+        $this->assertTrue(self::$document->firstGetDocumentPaymentMeans());
+        $this->assertFalse(self::$document->nextGetDocumentPaymentMeans());
     }
 
     public function testGetDocumentPaymentMeans(): void
     {
-        self::assertTrue(self::$document->firstGetDocumentPaymentMeans());
+        $this->assertTrue(self::$document->firstGetDocumentPaymentMeans());
         self::$document->getDocumentPaymentMeans($typeCode, $information, $cardType, $cardId, $cardHolderName, $buyerIban, $payeeIban, $payeeAccountName, $payeePropId, $payeeBic);
         $this->assertSame("30", $typeCode);
         $this->assertSame("", $information);
@@ -890,13 +891,13 @@ class PdfReaderExtended2Test extends TestCase
 
     public function testDocumentTaxLoop(): void
     {
-        self::assertTrue(self::$document->firstDocumentTax());
-        self::assertFalse(self::$document->nextDocumentTax());
+        $this->assertTrue(self::$document->firstDocumentTax());
+        $this->assertFalse(self::$document->nextDocumentTax());
     }
 
     public function testDocumentTax(): void
     {
-        self::assertTrue(self::$document->firstDocumentTax());
+        $this->assertTrue(self::$document->firstDocumentTax());
         self::$document->getDocumentTax($categoryCode, $typeCode, $basisAmount, $calculatedAmount, $rateApplicablePercent, $exemptionReason, $exemptionReasonCode, $lineTotalBasisAmount, $allowanceChargeBasisAmount, $taxPointDate, $dueDateTypeCode);
         $this->assertSame("S", $categoryCode);
         $this->assertSame("VAT", $typeCode);
@@ -908,18 +909,18 @@ class PdfReaderExtended2Test extends TestCase
 
     public function testtDocumentAllowanceChargeLoop(): void
     {
-        self::assertTrue(self::$document->firstDocumentAllowanceCharge());
-        self::assertTrue(self::$document->nextDocumentAllowanceCharge());
-        self::assertFalse(self::$document->nextDocumentAllowanceCharge());
+        $this->assertTrue(self::$document->firstDocumentAllowanceCharge());
+        $this->assertTrue(self::$document->nextDocumentAllowanceCharge());
+        $this->assertFalse(self::$document->nextDocumentAllowanceCharge());
     }
 
 
     public function testtDocumentAllowanceCharge(): void
     {
-        self::assertTrue(self::$document->firstDocumentAllowanceCharge());
+        $this->assertTrue(self::$document->firstDocumentAllowanceCharge());
         self::$document->getDocumentAllowanceCharge($actualAmount, $isCharge, $taxCategoryCode, $taxTypeCode, $rateApplicablePercent, $sequence, $calculationPercent, $basisAmount, $basisQuantity, $basisQuantityUnitCode, $reasonCode, $reason);
         $this->assertEqualsWithDelta(5.0, $actualAmount, PHP_FLOAT_EPSILON);
-        self::assertFalse($isCharge);
+        $this->assertFalse($isCharge);
         $this->assertSame("S", $taxCategoryCode);
         $this->assertSame("VAT", $taxTypeCode);
         $this->assertEqualsWithDelta(10.00, $rateApplicablePercent, PHP_FLOAT_EPSILON);
@@ -931,10 +932,10 @@ class PdfReaderExtended2Test extends TestCase
         $this->assertSame("", $reasonCode);
         $this->assertSame("REMISE COMMERCIALE", $reason);
 
-        self::assertTrue(self::$document->nextDocumentAllowanceCharge());
+        $this->assertTrue(self::$document->nextDocumentAllowanceCharge());
         self::$document->getDocumentAllowanceCharge($actualAmount, $isCharge, $taxCategoryCode, $taxTypeCode, $rateApplicablePercent, $sequence, $calculationPercent, $basisAmount, $basisQuantity, $basisQuantityUnitCode, $reasonCode, $reason);
         $this->assertEqualsWithDelta(10.0, $actualAmount, PHP_FLOAT_EPSILON);
-        self::assertTrue($isCharge);
+        $this->assertTrue($isCharge);
         $this->assertSame("S", $taxCategoryCode);
         $this->assertSame("VAT", $taxTypeCode);
         $this->assertEqualsWithDelta(10.00, $rateApplicablePercent, PHP_FLOAT_EPSILON);
@@ -949,19 +950,19 @@ class PdfReaderExtended2Test extends TestCase
 
     public function testtDocumentLogisticsServiceChargeLoop(): void
     {
-        self::assertFalse(self::$document->firstDocumentLogisticsServiceCharge());
-        self::assertFalse(self::$document->nextDocumentLogisticsServiceCharge());
+        $this->assertFalse(self::$document->firstDocumentLogisticsServiceCharge());
+        $this->assertFalse(self::$document->nextDocumentLogisticsServiceCharge());
     }
 
     public function testtDocumentPaymentTermsLoop(): void
     {
-        self::assertTrue(self::$document->firstDocumentPaymentTerms());
-        self::assertFalse(self::$document->nextDocumentPaymentTerms());
+        $this->assertTrue(self::$document->firstDocumentPaymentTerms());
+        $this->assertFalse(self::$document->nextDocumentPaymentTerms());
     }
 
     public function testtDocumentPaymentTerms(): void
     {
-        self::assertTrue(self::$document->firstDocumentPaymentTerms());
+        $this->assertTrue(self::$document->firstDocumentPaymentTerms());
         self::$document->getDocumentPaymentTerm($termdescription, $termduedate, $termmandate);
         self::$document->getDiscountTermsFromPaymentTerm($dispercent, $discbasedatetime, $discmeasureval, $discmeasureunit, $discbaseamount, $discamount);
         self::$document->getPenaltyTermsFromPaymentTerm($penaltypercent, $penaltybasedatetime, $penaltymeasureval, $penaltymeasureunit, $penaltybaseamount, $penaltyamount);
@@ -982,32 +983,32 @@ class PdfReaderExtended2Test extends TestCase
         $this->assertEquals(0, $penaltybaseamount);
         $this->assertEquals(0, $penaltyamount);
 
-        self::assertFalse(self::$document->nextDocumentPaymentTerms());
+        $this->assertFalse(self::$document->nextDocumentPaymentTerms());
     }
 
     public function testDocumentReceivableSpecifiedTradeAccountingAccount(): void
     {
-        self::assertTrue(self::$document->firstDocumentReceivableSpecifiedTradeAccountingAccount());
+        $this->assertTrue(self::$document->firstDocumentReceivableSpecifiedTradeAccountingAccount());
 
         self::$document->getDocumentReceivableSpecifiedTradeAccountingAccount($accountId, $accountType);
 
         $this->assertSame("BUYER ACCOUNT REF", $accountId);
         $this->assertSame("", $accountType);
 
-        self::assertFalse(self::$document->nextDocumentReceivableSpecifiedTradeAccountingAccount());
+        $this->assertFalse(self::$document->nextDocumentReceivableSpecifiedTradeAccountingAccount());
     }
 
     public function testDocumentPositionLoop(): void
     {
-        self::assertTrue(self::$document->firstDocumentPosition());
-        self::assertTrue(self::$document->nextDocumentPosition());
-        self::assertTrue(self::$document->nextDocumentPosition());
-        self::assertFalse(self::$document->nextDocumentPosition());
+        $this->assertTrue(self::$document->firstDocumentPosition());
+        $this->assertTrue(self::$document->nextDocumentPosition());
+        $this->assertTrue(self::$document->nextDocumentPosition());
+        $this->assertFalse(self::$document->nextDocumentPosition());
     }
 
     public function testDocumentPositionFirst(): void
     {
-        self::assertTrue(self::$document->firstDocumentPosition());
+        $this->assertTrue(self::$document->firstDocumentPosition());
 
         self::$document->getDocumentPositionGenerals($lineid, $linestatuscode, $linestatusreasoncode);
         $this->assertSame("1", $lineid);
@@ -1089,14 +1090,14 @@ class PdfReaderExtended2Test extends TestCase
         $this->assertInstanceOf("DateTime", $docpostenddate);
         $this->assertEquals((\DateTime::createFromFormat('Ymd', '20191231'))->format('Ymd'), $docpostenddate->format('Ymd'));
 
-        self::assertFalse(self::$document->firstDocumentPositionNote());
-        self::assertFalse(self::$document->nextDocumentPositionNote());
+        $this->assertFalse(self::$document->firstDocumentPositionNote());
+        $this->assertFalse(self::$document->nextDocumentPositionNote());
 
-        self::assertFalse(self::$document->firstDocumentPositionGrossPriceAllowanceCharge());
-        self::assertFalse(self::$document->nextDocumentPositionGrossPriceAllowanceCharge());
+        $this->assertFalse(self::$document->firstDocumentPositionGrossPriceAllowanceCharge());
+        $this->assertFalse(self::$document->nextDocumentPositionGrossPriceAllowanceCharge());
 
-        self::assertTrue(self::$document->firstDocumentPositionTax());
-        self::assertFalse(self::$document->nextDocumentPositionTax());
+        $this->assertTrue(self::$document->firstDocumentPositionTax());
+        $this->assertFalse(self::$document->nextDocumentPositionTax());
 
         self::$document->firstDocumentPositionTax();
         self::$document->getDocumentPositionTax($categoryCode, $typeCode, $rateApplicablePercent, $calculatedAmount, $exemptionReason, $exemptionReasonCode);
@@ -1116,7 +1117,7 @@ class PdfReaderExtended2Test extends TestCase
 
     public function testDocumentPositionSecond(): void
     {
-        self::assertTrue(self::$document->nextDocumentPosition());
+        $this->assertTrue(self::$document->nextDocumentPosition());
 
         self::$document->getDocumentPositionGenerals($lineid, $linestatuscode, $linestatusreasoncode);
         $this->assertSame("2", $lineid);
@@ -1197,14 +1198,14 @@ class PdfReaderExtended2Test extends TestCase
         $this->assertEquals((\DateTime::createFromFormat('Ymd', '20191201'))->format('Ymd'), $docposstartdate->format('Ymd'));
         $this->assertNotInstanceOf(\DateTime::class, $docpostenddate);
 
-        self::assertFalse(self::$document->firstDocumentPositionNote());
-        self::assertFalse(self::$document->nextDocumentPositionNote());
+        $this->assertFalse(self::$document->firstDocumentPositionNote());
+        $this->assertFalse(self::$document->nextDocumentPositionNote());
 
-        self::assertFalse(self::$document->firstDocumentPositionGrossPriceAllowanceCharge());
-        self::assertFalse(self::$document->nextDocumentPositionGrossPriceAllowanceCharge());
+        $this->assertFalse(self::$document->firstDocumentPositionGrossPriceAllowanceCharge());
+        $this->assertFalse(self::$document->nextDocumentPositionGrossPriceAllowanceCharge());
 
-        self::assertTrue(self::$document->firstDocumentPositionTax());
-        self::assertFalse(self::$document->nextDocumentPositionTax());
+        $this->assertTrue(self::$document->firstDocumentPositionTax());
+        $this->assertFalse(self::$document->nextDocumentPositionTax());
 
         self::$document->firstDocumentPositionTax();
         self::$document->getDocumentPositionTax($categoryCode, $typeCode, $rateApplicablePercent, $calculatedAmount, $exemptionReason, $exemptionReasonCode);
@@ -1224,7 +1225,7 @@ class PdfReaderExtended2Test extends TestCase
 
     public function testDocumentPositionThird(): void
     {
-        self::assertTrue(self::$document->nextDocumentPosition());
+        $this->assertTrue(self::$document->nextDocumentPosition());
 
         self::$document->getDocumentPositionGenerals($lineid, $linestatuscode, $linestatusreasoncode);
         $this->assertSame("3", $lineid);
@@ -1305,14 +1306,14 @@ class PdfReaderExtended2Test extends TestCase
         $this->assertInstanceOf("DateTime", $docpostenddate);
         $this->assertEquals((\DateTime::createFromFormat('Ymd', '20191231'))->format('Ymd'), $docpostenddate->format('Ymd'));
 
-        self::assertFalse(self::$document->firstDocumentPositionNote());
-        self::assertFalse(self::$document->nextDocumentPositionNote());
+        $this->assertFalse(self::$document->firstDocumentPositionNote());
+        $this->assertFalse(self::$document->nextDocumentPositionNote());
 
-        self::assertFalse(self::$document->firstDocumentPositionGrossPriceAllowanceCharge());
-        self::assertFalse(self::$document->nextDocumentPositionGrossPriceAllowanceCharge());
+        $this->assertFalse(self::$document->firstDocumentPositionGrossPriceAllowanceCharge());
+        $this->assertFalse(self::$document->nextDocumentPositionGrossPriceAllowanceCharge());
 
-        self::assertTrue(self::$document->firstDocumentPositionTax());
-        self::assertFalse(self::$document->nextDocumentPositionTax());
+        $this->assertTrue(self::$document->firstDocumentPositionTax());
+        $this->assertFalse(self::$document->nextDocumentPositionTax());
 
         self::$document->firstDocumentPositionTax();
         self::$document->getDocumentPositionTax($categoryCode, $typeCode, $rateApplicablePercent, $calculatedAmount, $exemptionReason, $exemptionReasonCode);
@@ -1332,7 +1333,7 @@ class PdfReaderExtended2Test extends TestCase
 
     public function testDocumentPositionAdditionalReferencedDocument(): void
     {
-        self::assertFalse(self::$document->firstDocumentPositionAdditionalReferencedDocument());
-        self::assertFalse(self::$document->nextDocumentPositionAdditionalReferencedDocument());
+        $this->assertFalse(self::$document->firstDocumentPositionAdditionalReferencedDocument());
+        $this->assertFalse(self::$document->nextDocumentPositionAdditionalReferencedDocument());
     }
 }

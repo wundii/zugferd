@@ -19,7 +19,7 @@ trait HandlesXmlTests
     /**
      * Dont render xml content
      *
-     * @var bool
+     * @var boolean
      */
     protected $renderingOfXmlDisabled = false;
 
@@ -38,7 +38,7 @@ trait HandlesXmlTests
      */
     public function testDummy()
     {
-        self::assertTrue(true);
+        $this->assertTrue(true);
     }
 
     /**
@@ -95,7 +95,7 @@ trait HandlesXmlTests
      * Assert a xpath with $expected value in a multiple element resultset
      *
      * @param  string  $xpath
-     * @param  int $index
+     * @param  integer $index
      * @param  string  $expected
      * @return void
      */
@@ -111,7 +111,7 @@ trait HandlesXmlTests
      * Assert a xpath with $expected value in a multiple element resultset
      *
      * @param  string  $xpath
-     * @param  int $index
+     * @param  integer $index
      * @param  string  $expected
      * @return void
      */
@@ -213,7 +213,7 @@ trait HandlesXmlTests
      * Test that an xml element does not exist at index
      *
      * @param  string  $xpath
-     * @param  int $index
+     * @param  integer $index
      * @return void
      */
     protected function assertXPathNotExistsWithIndex(string $xpath, int $index)
