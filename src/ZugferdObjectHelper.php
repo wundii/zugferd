@@ -54,7 +54,6 @@ class ZugferdObjectHelper
         "text/csv",
         "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
         "application/vnd.oasis.opendocument.spreadsheet",
-        "application/xml",
     ];
 
     /**
@@ -534,6 +533,13 @@ class ZugferdObjectHelper
 
             $fileExtension = FileUtils::getFileExtension($binaryDataFilename);
             if ($mimetype === 'text/plain' && strtolower($fileExtension) === 'csv') {
+                $mimetype = 'text/csv';
+            }
+
+            /**
+             * PHP 8.0 may misdetect CSV files as "application/csv"; normalize to the standard "text/csv"
+             */
+            if (PHP_VERSION_ID >= 80000 && PHP_VERSION_ID < 81000 && $mimetype === 'application/csv') {
                 $mimetype = 'text/csv';
             }
 
